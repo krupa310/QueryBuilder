@@ -1,0 +1,29 @@
+﻿<div class="condition-panel">
+  <form class="form-inline" #containerForm="ngForm">
+    <div class="form-group">
+      <select (change)="sourceChange($event)" #sourcectrl="ngModel" [(ngModel)]="sourceValue" name="source" required>
+        <option *ngFor="let condition of conditonData" [value]="condition.name">
+          {{condition.name}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <select (change)="operatorChange($event)" #opctrl="ngModel" [(ngModel)]="operatorValue" name="operator" required>
+        <option *ngFor="let condition of conditionOperatorValue" [value]="condition.name">
+          {{condition.displayName}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" required
+             [class.error]="inputValue.touched && inputValue.invalid"
+             name="textVal" #inputValue="ngModel" [(ngModel)]="textValue"
+             (change)="onInputChange($event)">
+      <div *ngIf="inputValue.touched && inputValue.invalid" class="error-text">
+        Required
+      </div>
+    </div>
+    <button type="submit" class="btn btn-default" [disabled]="containerForm.form.invalid" (click)="parentGroup?.addNewCondition()">+</button>
+    <button type="button" class="btn btn-default" (click)="removeCondition()">-</button>
+  </form>
+</div>

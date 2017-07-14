@@ -1,0 +1,21 @@
+﻿<div class="group-panel">
+  <button type="button" class="btn btn-primary" (click)="addNewGrp()">
+    Add New Group
+  </button>
+  <button type="button" *ngIf="groupData?.conditions?.length < 1" class="btn btn-primary" (click)="addNewCondition()">
+    Add New Condition
+  </button>
+  <button class="btn btn-danger" (click)="removeGroup()" *ngIf="parentGroup">Remove Group</button>
+  <hr />
+  <custom-condition *ngFor="let condition of groupData.conditions,let i=index"
+                    [conditionData]="condition"
+                    [qData]="qData"
+                    [parentGroup]="currentComponent"
+                    (conditionChange)="conditionDataChange(condition,i)">
+  </custom-condition>
+  <custom-group *ngFor="let grp of groupData?.groups,let i=index"
+                [qData]="qData"
+                [parentGroup]="groupData"
+                (grpDataChange)="groupDataChange($event)">
+  </custom-group>
+</div>

@@ -1,0 +1,15 @@
+﻿<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h2>
+   Query Builder
+  </h2>  
+</div>
+<div class="container">
+  <custom-group [qData]="queryData" 
+                (grpDataChange)="groupDataChange($event)"></custom-group>
+  <pre>{{ jsonValue |json}}</pre>
+</div>
+
+
+
+
